@@ -12,16 +12,16 @@ function decrypt(cipher, data) {
 
 function process(event) {
     event.preventDefault();
-    $('#result-panel').removeClass('hidden');
-    var toEncrypt = parseInt($('input[name="encrypt"]:checked').val());
-    var data = $('#data').val();
-    var pass = $('#password').val();
+    document.getElementById('result-panel').removeAttribute('class');
+    var toEncrypt = parseInt(document.querySelector('input[name="encrypt"]:checked').value);
+    var data = document.getElementById('data').value;
+    var pass = document.getElementById('password').value;
 
     var cipher = new Skipjack(pass);
     var result = toEncrypt ? encrypt(cipher, data) : decrypt(cipher, data);
-    $('#result').html(result);
+    document.getElementById('result').innerHTML = result;
 }
 
 $(document).ready(function () {
-    $('#process-form').submit(process);
+    document.getElementById('process-form').addEventListener('submit', process);
 });
