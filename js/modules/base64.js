@@ -1,10 +1,14 @@
 'use strict';
 
 module.exports = {
+
+    /**
+     * BASE64 to Uint8Array.
+     */
     decode: function (s) {
         s = s.replace(/[^A-Za-z0-9\+\/]/g, '');
         var n = s.length,
-            k = n * 3 + 1 >> 2, r = new Uint16Array(k);
+            k = n * 3 + 1 >> 2, r = new Uint8Array(k);
 
         for (var m3, m4, u24 = 0, j = 0, i = 0; i < n; i++) {
             m4 = i & 3;
@@ -28,8 +32,9 @@ module.exports = {
         }
         return r;
     },
+
     /**
-     * Base64.encode(data) convert CryptoOperationData data to BASE64 string.
+     * Uint8Array to BASE64.
      */
     encode: function (data) {
         var m3 = 2, s = '';
