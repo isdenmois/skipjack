@@ -15,8 +15,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>Select reader type</h4></div>
                         <div class="panel-body">
-                            <button class="btn">ECB</button>
-                            <button class="btn">OFB</button>
+                            <div class="form-group">
+                                <label class="radio-inline"><input type="radio" name="mode" value="ecb" checked="checked">ECF</label>
+                                <label class="radio-inline"><input type="radio" name="mode" value="ofb">OFB</label>
+                            </div>
                             <div class="clearfix"></div>
                             <hr>
                             <dl>
@@ -35,6 +37,12 @@
                             <div class="form-group">
                                 <label class="radio-inline"><input type="radio" name="encrypt" value="1" checked="checked">Encrypt</label>
                                 <label class="radio-inline"><input type="radio" name="encrypt" value="0">Decrypt</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="password">Input the initialization vector:</label>
+                                    <input class="form-control" id="iv" />
+                                </div>
                             </div>
                         </div>
                     </div>
