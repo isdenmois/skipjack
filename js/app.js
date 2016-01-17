@@ -22,6 +22,6 @@ function process(event) {
     document.getElementById('result').innerHTML = result;
 }
 
-$(document).ready(function () {
+document.onload = function () {
     document.getElementById('process-form').addEventListener('submit', process);
-});
+};
