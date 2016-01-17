@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Begin page content -->
+        <div class="container">
+            <div class="page-header">
+                <h1>Skipjack cipher</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4>Select reader type</h4></div>
+                        <div class="panel-body">
+                            <button class="btn">ECB</button>
+                            <button class="btn">OFB</button>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <dl>
+                                <dt>ECB</dt>
+                                <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                                <dt>OFB</dt>
+                                <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4>Select crypto type</h4></div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="radio-inline"><input type="radio" name="encrypt" value="1" checked="checked">Encrypt</label>
+                                <label class="radio-inline"><input type="radio" name="encrypt" value="0">Decrypt</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4>Input data</h4></div>
+                        <div class="panel-body">
+                            <form id="process-form">
+                                <div class="form-group">
+                                    <label for="password">Input the password:</label>
+                                    <input class="form-control" id="password" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="data">Input the data:</label>
+                                    <textarea class="form-control" rows="5" id="data"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn">Process</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row hidden" id="result-panel">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4>Result</h4></div>
+                        <div class="panel-body" id="result">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="node_modules/jquery/dist/jquery.js"></script>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
