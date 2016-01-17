@@ -1,11 +1,25 @@
+'use strict';
+
 var gulp = require('gulp');
 var bump = require('gulp-bump');
+var inline = require('gulp-inline');
+var minifyCss = require('gulp-minify-css');
+var webpack = require('gulp-webpack');
+
+gulp.task('javascript', function () {
+    return gulp.src('js/app.js')
+        .pipe(browserify({
+            insertGlobals : true,
+            debug : !gulp.env.production
+        }))
+        .pipe(gulp.dest('./dist'));
+});
 
 /**
  * Bump patch version.
  */
 gulp.task('bump', function () {
-    gulp.src('./package.json')
+    return gulp.src('./package.json')
         .pipe(bump())
         .pipe(gulp.dest('./'));
 });
@@ -22,6 +36,24 @@ gulp.task('bump-major', function () {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', function () {
-    gulp.run('bump');
+/**
+ * Inline all scripts and styles.
+ */
+gulp.task('inline', function () {
+    return gulp.src('index.html')
+        .pipe(inline({
+            css: minifyCss
+        }))
+        .pipe(gulp.dest('dist/'));
 });
+
+/**
+ * Build webpack.
+ */
+gulp.task('webpack', function() {
+    return gulp.src('js/app.js')
+        .pipe(webpack(require('./webpack.config')))
+        .pipe(gulp.dest('./'));
+});
+
+gulp.task('default', ['webpack', 'inline', 'bump']);
