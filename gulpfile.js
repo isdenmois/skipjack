@@ -56,4 +56,15 @@ gulp.task('webpack', function() {
         .pipe(gulp.dest('./'));
 });
 
+/**
+ * Build webpack.
+ */
+gulp.task('webpack:debug', function() {
+    var config = require('./webpack.config');
+    delete config.plugins;
+    return gulp.src('js/app.js')
+        .pipe(webpack(config))
+        .pipe(gulp.dest('./'));
+});
+
 gulp.task('default', ['webpack', 'inline', 'bump']);
