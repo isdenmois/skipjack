@@ -21,6 +21,8 @@ var ftable = [
 
 
 var Skipjack = function (key) {
+    this.blockSize = 8;
+
     key = ua.toArray(key);
     this.key = [
         new Uint16Array(32),
@@ -58,10 +60,10 @@ var euint = function (value, buff, index) {
 };
 
 Skipjack.prototype.encrypt = function (data, index, out, outOff) {
-    var w1 = data[index + 0];
-    var w2 = data[index + 1];
-    var w3 = data[index + 2];
-    var w4 = data[index + 3];
+    var w1 = (data[index + 0] << 8) + (data[index + 1] & 0xff);
+    var w2 = (data[index + 2] << 8) + (data[index + 3] & 0xff);
+    var w3 = (data[index + 4] << 8) + (data[index + 5] & 0xff);
+    var w4 = (data[index + 6] << 8) + (data[index + 7] & 0xff);
     var k = 0;
 
     for(var t = 0; t < 2; t++) {
@@ -135,10 +137,10 @@ Skipjack.prototype.decrypt = function (input, index, out, outOff) {
         }
     }
 
-    out[outOff + 0] = w2;
-    out[outOff + 1] = w1;
-    out[outOff + 2] = w4;
-    out[outOff + 3] = w3;
+    euint(w2, out, outOff + 0);
+    euint(w1, out, outOff + 2);
+    euint(w4, out, outOff + 4);
+    euint(w3, out, outOff + 6);
 };
 
 Skipjack.prototype.encryptBlock = function (data) {
@@ -148,7 +150,7 @@ Skipjack.prototype.encryptBlock = function (data) {
 };
 
 Skipjack.prototype.decryptBlock = function (data) {
-    var buffer = new Uint16Array(4);
+    var buffer = new Uint8Array(8);
     this.decrypt(data, 0, buffer, 0);
     return buffer;
 };
