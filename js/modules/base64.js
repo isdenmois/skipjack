@@ -32,7 +32,6 @@ module.exports = {
      * Base64.encode(data) convert CryptoOperationData data to BASE64 string.
      */
     encode: function (data) {
-        var slen = 8;
         var m3 = 2, s = '';
         for (var n = data.length, u24 = 0, i = 0; i < n; i++) {
             m3 = i % 3;

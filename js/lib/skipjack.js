@@ -1,4 +1,3 @@
-var b64 = require('../modules/base64');
 var ua = require('../modules/uintArray');
 
 var ftable = [

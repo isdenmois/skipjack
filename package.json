@@ -1,6 +1,6 @@
 {
   "name": "skipjack",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Home work for applied Cryptography",
   "main": "dist/index.html",
   "keywords": [
