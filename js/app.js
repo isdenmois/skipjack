@@ -1,13 +1,16 @@
 var b64 = require('./modules/base64');
 var ua = require('./modules/uintArray');
 var Skipjack = require('./lib/skipjack');
+var ECBMode = require('./modes/ecb');
 
 function encrypt(cipher, data) {
-    return b64.encode(cipher.encryptBlock(ua.toArray(data)));
+    data = cipher.encrypt(ua.to8Array(data));
+    return b64.encode(data);
 }
 
 function decrypt(cipher, data) {
-    return ua.toString(cipher.decryptBlock(b64.decode(data)));
+    data = cipher.decrypt(b64.decode(data));
+    return ua.a8toString(data);
 }
 
 function process(event) {
@@ -18,10 +21,11 @@ function process(event) {
     var pass = document.getElementById('password').value;
 
     var cipher = new Skipjack(pass);
-    var result = toEncrypt ? encrypt(cipher, data) : decrypt(cipher, data);
+    var ecb = new ECBMode(cipher);
+    var result = toEncrypt ? encrypt(ecb, data) : decrypt(ecb, data);
     document.getElementById('result').innerHTML = result;
 }
 
-document.onload = function () {
+window.onload = function () {
     document.getElementById('process-form').addEventListener('submit', process);
 };
