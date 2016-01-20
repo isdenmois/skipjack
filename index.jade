@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+    head
+        title Skipjack cipher
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="description", content="A front-end template that helps you build fast, modern mobile web apps.")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        meta(name="theme-color" content="#009688")
+        link(rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css")
+        link(rel="stylesheet" href="style.css")
+    body.grey.lighten-2
+        .ribbon.teal
+        main.container.white.z-depth-1.row
+            h1 Skipjack cipher
+            form(action="#").col.s12
+                .row
+                    .col Select mode of operation
+                .row
+                    .col.s12.m12.l1
+                        input(name="mode" type="radio" checked)#ecb
+                        label(for="ecb") ECB
+                    .col.s12.m12.l1
+                        input(name="mode" type="radio")#ofb
+                        label(for="ofb") OFB
+                    .col.s12.m12.l1
+                        input(name="mode" type="radio")#cbc
+                        label(for="cbc") CBC
+
+                .row
+                    .input-field.col.s12.m6
+                        input#pkey(length=10 type="text").validate
+                        label(for="pkey") Input private key
+                    .input-field.col.s12.m6
+                        input#iv(length=8 type="text").validate
+                        label(for="iv") Input initialize vector
+
+                .row
+                    .input-field.col.s12.m12.l5
+                        textarea#encrypt.materialize-textarea
+                        label(for="encrypt") Input data to encrypt
+                    .col.s12.m12.l2
+                        .row
+                            a.waves-effect.waves-light.btn.col.s12.m6.l12.push-m6#encryptBtn
+                                .svg-image
+                                    | Encrypt
+                                    img(src="svg/encrypt.svg")
+
+                            a.waves-effect.waves-light.btn.col.s12.m6.l12.pull-m6#decryptBtn
+                                .svg-image
+                                    img(src="svg/decrypt.svg")
+                                    | Decrypt
+                    .input-field.col.s12.m12.l5
+                        textarea#decrypt.materialize-textarea
+                        label(for="decrypt") Input data to decrypt
+
+        footer.page-footer.grey.darken-3
+            .footer-copyright
+                .container Denis Moiseev, 2016
+
+        script(src="node_modules/jquery/dist/jquery.js")
+        script(src="node_modules/materialize-css/dist/js/materialize.min.js")
+        script(src="app.js")
