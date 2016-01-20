@@ -5,6 +5,8 @@ var bump = require('gulp-bump');
 var inline = require('gulp-inline');
 var minifyCss = require('gulp-minify-css');
 var webpack = require('gulp-webpack');
+var jade = require('gulp-jade');
+var less = require('gulp-less');
 
 gulp.task('javascript', function () {
     return gulp.src('js/app.js')
@@ -57,6 +59,24 @@ gulp.task('webpack', function() {
 });
 
 /**
+ * Compile JADE template.
+ */
+gulp.task('template', function() {
+    gulp.src('./index.jade')
+        .pipe(jade())
+        .pipe(gulp.dest('./'))
+});
+
+/**
+ * Compile LESS.
+ */
+gulp.task('less', function () {
+    return gulp.src('./less/**/*.less')
+        .pipe(less())
+        .pipe(gulp.dest('./'));
+});
+
+/**
  * Build webpack.
  */
 gulp.task('webpack:debug', function() {
@@ -67,4 +87,4 @@ gulp.task('webpack:debug', function() {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', ['webpack', 'inline', 'bump']);
+gulp.task('default', ['template', 'less', 'webpack', 'inline', 'bump']);
