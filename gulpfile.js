@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var bump = require('gulp-bump');
 var inline = require('gulp-inline');
+var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
 var webpack = require('gulp-webpack');
 var jade = require('gulp-jade');
@@ -44,7 +45,8 @@ gulp.task('bump-major', function () {
 gulp.task('inline', function () {
     return gulp.src('index.html')
         .pipe(inline({
-            css: minifyCss
+            css: minifyCss,
+            js: uglify
         }))
         .pipe(gulp.dest('dist/'));
 });
