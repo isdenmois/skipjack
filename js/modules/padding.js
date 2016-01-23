@@ -25,6 +25,6 @@ module.exports = {
             return data;
         }
 
-        return data.subarray(0, unpad);
+        return data.slice(0, unpad);
     }
 };
