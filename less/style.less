@@ -21,3 +21,16 @@ main.container {
     margin-bottom: 20px;
   }
 }
+
+.new-line {
+  margin-bottom: 60px;
+
+  input.invalid + label::after {
+    width: 350px;
+  }
+}
+
+textarea.invalid + label::after {
+    width: 250px;
+    position: relative;
+}

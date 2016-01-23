@@ -13,7 +13,7 @@ html(lang="en")
         .ribbon.teal
         main.container.white.z-depth-1.row
             h1 Skipjack cipher
-            form(action="#").col.s12
+            form#form(action="#").col.s12
                 .row
                     .col Select mode of operation
                 .row
@@ -27,12 +27,12 @@ html(lang="en")
                         input(name="mode" type="radio")#cbc
                         label(for="cbc") CBC
 
-                .row
+                .row.new-line
                     .input-field.col.s12.m6
-                        input#pkey(length=10 type="text").validate
+                        input#pkey(length=10 type="text" name="pkey")
                         label(for="pkey") Input private key
                     .input-field.col.s12.m6
-                        input#iv(length=8 type="text").validate
+                        input#iv(length=8 type="text" name="iv")
                         label(for="iv") Input initialize vector
 
                 .row
@@ -41,12 +41,12 @@ html(lang="en")
                         label(for="encrypt") Input data to encrypt
                     .col.s12.m12.l2
                         .row
-                            a.waves-effect.waves-light.btn.col.s12.m6.l12.push-m6#encryptBtn
+                            button(type="submit" onclick="this.form.submited=this.value;" value="encrypt").waves-effect.waves-light.btn.col.s12.m6.l12.push-m6#encryptBtn
                                 .svg-image
                                     | Encrypt
                                     img(src="svg/encrypt.svg")
 
-                            a.waves-effect.waves-light.btn.col.s12.m6.l12.pull-m6#decryptBtn
+                            button(type="submit" onclick="this.form.submited=this.value;" value="decrypt").waves-effect.waves-light.btn.col.s12.m6.l12.pull-m6#decryptBtn
                                 .svg-image
                                     img(src="svg/decrypt.svg")
                                     | Decrypt
@@ -59,5 +59,6 @@ html(lang="en")
                 .container Denis Moiseev, 2016
 
         script(src="node_modules/jquery/dist/jquery.js")
+        script(src="node_modules/jquery-validation/dist/jquery.validate.js")
         script(src="node_modules/materialize-css/dist/js/materialize.min.js")
         script(src="app.js")
