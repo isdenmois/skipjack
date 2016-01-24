@@ -36,11 +36,20 @@ html(lang="en")
                         label(for="iv") Input initialize vector
 
                 .row
-                    .input-field.col.s12.m12.l5
-                        textarea#encrypt.materialize-textarea
-                        label(for="encrypt") Input data to encrypt
-                    .col.s12.m12.l2
+                    .col.s12.m12.l5
                         .row
+                            .col.s12.file-panel
+                                .row
+                                    .file-field.btn.col.s3
+                                        span Load
+                                        input(type="file" data-target="#encrypt")#load-encrypt
+                                    a.btn#save-encrypt.col.s3.offset-s1(data-name="decrypted.txt" data-target="#encrypt")
+                                        span Save
+                            .col.s12.input-field
+                                textarea#encrypt.materialize-textarea
+                                label(for="encrypt") Input data to encrypt
+                    .col.s12.m12.l2
+                        .row.buttons
                             button(type="submit" onclick="this.form.submited=this.value;" value="encrypt").waves-effect.waves-light.btn.col.s12.m6.l12.push-m6#encryptBtn
                                 .svg-image
                                     | Encrypt
@@ -50,9 +59,18 @@ html(lang="en")
                                 .svg-image
                                     img(src="svg/decrypt.svg")
                                     | Decrypt
-                    .input-field.col.s12.m12.l5
-                        textarea#decrypt.materialize-textarea
-                        label(for="decrypt") Input data to decrypt
+                    .col.s12.m12.l5
+                        .row
+                            .col.s12.file-panel.offset-l5.offset-m0
+                                .row
+                                    .file-field.btn.col.s3
+                                        span Load
+                                        input(type="file" data-target="#decrypt")#load-decrypt
+                                    a.btn#save-decrypt.col.s3.offset-s1(data-name="encrypted.base64.txt" data-target="#decrypt")
+                                        span Save
+                            .col.s12.input-field
+                                textarea#decrypt.materialize-textarea
+                                label(for="decrypt") Input data to decrypt (in Base64 format)
 
         footer.page-footer.grey.darken-3
             .footer-copyright

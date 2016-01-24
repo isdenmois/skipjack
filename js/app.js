@@ -38,7 +38,7 @@ function encrypt() {
     toEncrypt = ua.to8Array(toEncrypt);
     toEncrypt = mode.encrypt(toEncrypt);
     var result = b64.encode(toEncrypt);
-    $('#decrypt').val(result).find('+ label').addClass('active');
+    $('#decrypt').val(result).blur().find('+ label').addClass('active');
 }
 
 /**
@@ -66,7 +66,7 @@ function decrypt() {
     toDecrypt = b64.decode(toDecrypt);
     toDecrypt = mode.decrypt(toDecrypt);
     var result = ua.a8toString(toDecrypt);
-    $('#encrypt').val(result).find('+ label').addClass('active');
+    $('#encrypt').val(result).blur().find('+ label').addClass('active');
 }
 
 /**
@@ -132,5 +132,49 @@ window.onload = function () {
           maxlength: "Initialize vector might be 64 bit lenght (8 chars)"
       }
     }
+  });
+  var handleFileSelect = function (event) {
+      var target = event.target;
+      var file = target.files[0];
+      target = $(target).attr('data-target');
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          $(target).val(e.target.result).blur().find('+ label').addClass('active');
+          $(event.target).val("");
+        };
+      })(file);
+
+      // Read in the image file as a data URL.
+      reader.readAsText(file);
+  };
+  // Load files.
+  document.getElementById('load-encrypt').addEventListener('change', handleFileSelect, false);
+  document.getElementById('load-decrypt').addEventListener('change', handleFileSelect, false);
+
+  // Save files.
+  $('#save-decrypt, #save-encrypt').click(function(event) {
+      var target = $(event.currentTarget);
+      var filename = target.attr('data-name');
+      var area = $(target.attr('data-target'));
+
+      var blob = new Blob([area.val()], { type: 'text/plain' });
+
+      // If IE.
+      if (window.navigator.msSaveBlob) {
+          window.navigator.msSaveBlob(blob, filename);
+      }
+      else {
+          var a = window.document.createElement('a');
+
+          a.href = window.URL.createObjectURL(blob);
+          a.download = filename;
+
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+      }
   });
 };

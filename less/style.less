@@ -1,4 +1,10 @@
 
+@media only screen and (min-width: 992px) {
+  .row.buttons {
+      margin-top: 60px;
+  }
+}
+
 .svg-image {
 
   svg, img {
@@ -23,7 +29,7 @@ main.container {
 }
 
 .new-line {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 
   input.invalid + label::after {
     width: 350px;
@@ -33,4 +39,16 @@ main.container {
 textarea.invalid + label::after {
     width: 250px;
     position: relative;
+}
+
+.col.s12.file-panel {
+  margin-bottom: auto;
+
+  + div.col {
+    position: relative;
+  }
+}
+
+.file-field {
+  cursor: pointer;
 }
